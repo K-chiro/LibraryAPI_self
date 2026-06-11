@@ -113,7 +113,7 @@ public class RegisterBookController : ControllerBase
     }
 
     /// <summary>
-    /// 図書が既に存在するかを検証する
+    /// 図書が既に存在するかを検証する.
     /// </summary>
     /// <param name="productName">検証対象の図書名</param>
     /// <returns>
