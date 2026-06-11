@@ -9,13 +9,7 @@
             RegisterBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ
             </summary>
         </member>
-        <member name="M:LibraryApi.Presentations.Adapters.RegisterBookViewModelAdapter.RestoreAsync(LibraryApi.Presentations.ViewModels.RegisterBookViewModel)">
-            <summary>
-            RegisterBookViewModelからドメインオブジェクト:Bookを復元する
-            </summary>
-            <param name="target">ユースケース:[新商品を登録する]を実現するViewModel</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:LibraryApi.Presentations.Adapters.RegisterBookViewModelAdapter.RestoreAsync(LibraryApi.Presentations.ViewModels.RegisterBookViewModel)" -->
         <member name="T:LibraryApi.Presentations.Configs.ApplicationDependencyExtensions">
             <summary>
             依存関係(DI)の設定
@@ -65,7 +59,35 @@
             <returns></returns>
         </member>
         <member name="M:LibraryApi.Presentations.Controllers.GetBookInfoByBookIdController.GetInfo(System.String)">
+             <summary>
+             BookIdで図書情報を取得する
+             </summary>
             BookIdで図書情報を取得する
+        </member>
+        <member name="T:LibraryApi.Presentations.Controllers.RegisterBookController">
+            <summary>
+            ユースケース:[新図書を登録する]を実現するコントローラ
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.RegisterBookController.#ctor(LibraryApi.Applications.Usecases.Books.Interfaces.IRegisterBookUsecase,LibraryApi.Presentations.Adapters.RegisterBookViewModelAdapter)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="usecase">ユースケース:[新図書を登録する]を実現するインターフェイス</param>
+            <param name="adapter">RegisterBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ</param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.RegisterBookController.GetCategoriesAsync">
+            <summary>
+            図書カテゴリ一覧の取得
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.RegisterBookController.Register(LibraryApi.Presentations.ViewModels.RegisterBookRequestViewModel)">
+            <summary>
+            新図書を登録する
+            </summary>
+            <param name="model">図書登録用ViewModel</param>
+            <returns></returns>
         </member>
         <member name="T:LibraryApi.Presentations.Controllers.SearchBookByKeywordController">
             <summary>
@@ -85,51 +107,15 @@
             <param name="keyword">検索キーワード</param>
             <returns>検索結果の図書一覧</returns>
         </member>
-        <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookViewModel">
+        <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookRequestViewModel">
             <summary>
             ユースケース:[新商品を登録する]を実現するViewModel
             </summary>
         </member>
-        <member name="T:LibraryApi.Presentation.Controllers.RegisterBookController">
+        <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookViewModel">
             <summary>
-            ユースケース:[新図書を登録する]を実現するコントローラ
+            ユースケース:[新商品を登録する]を実現するViewModel
             </summary>
-        </member>
-        <member name="M:LibraryApi.Presentation.Controllers.RegisterBookController.#ctor(LibraryApi.Applications.Usecases.Books.Interfaces.IRegisterBookUsecase,LibraryApi.Presentations.Adapters.RegisterBookViewModelAdapter)">
-            <summary>
-            コンストラクタ
-            </summary>
-            <param name="usecase">ユースケース:[新図書を登録する]を実現するインターフェイス</param>
-            <param name="adapter">RegisterBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ</param>
-        </member>
-        <member name="M:LibraryApi.Presentation.Controllers.RegisterBookController.GetCategories">
-            <summary>
-            図書カテゴリ一覧の取得
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:LibraryApi.Presentation.Controllers.RegisterBookController.GetCategoryById(System.String)">
-            <summary>
-            選択された図書カテゴリIdで図書カテゴリを取得する取得する
-            </summary>
-            <param name="categoryId">図書カテゴリId(UUID)</param>
-            <returns>該当するカテゴリが存在すればOK(200)、存在しなければNotFound(404)</returns>
-        </member>
-        <member name="M:LibraryApi.Presentation.Controllers.RegisterBookController.ValidateBook(System.String)">
-            <summary>
-            図書が既に存在するかを検証する
-            </summary>
-            <param name="productName">検証対象の図書名</param>
-            <returns>
-            存在しない場合:Ok(200)、存在する場合:Conflict(409) 
-            </returns>
-        </member>
-        <member name="M:LibraryApi.Presentation.Controllers.RegisterBookController.Register(LibraryApi.Presentations.ViewModels.RegisterBookViewModel)">
-            <summary>
-            新図書を登録する
-            </summary>
-            <param name="model">図書登録用ViewModel</param>
-            <returns></returns>
         </member>
     </members>
 </doc>

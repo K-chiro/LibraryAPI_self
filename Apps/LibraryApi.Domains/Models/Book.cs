@@ -103,7 +103,7 @@ public class Book
 
         if (title.Length > MaxTitleLength)
         {
-            throw new DomainException($"タイトルは{MaxTitleLength}文字以内である必要があります。");
+            throw new DomainException($"書名は1~{MaxTitleLength}文字で入力してください");
         }
     }
 
@@ -118,7 +118,7 @@ public class Book
 
         if (author.Length > MaxAuthorLength)
         {
-            throw new DomainException($"著者名は{MaxAuthorLength}文字以内である必要があります。");
+            throw new DomainException($"著者名は1~{MaxAuthorLength}文字以内である必要があります。");
         }
     }
 }

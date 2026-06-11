@@ -203,7 +203,7 @@ public class RegisterBookViewModelAdapterTests
         Assert.AreEqual("在庫数は0以上である必要があります。", ex.Message);
     }
 
-     [TestMethod("著者名が31文字以上、DomainExceptionがスローされる")]
+    [TestMethod("著者名が31文字以上、DomainExceptionがスローされる")]
     public async Task RestoreAsync_ShouldThrow_WhenPriceNegative()
     {
         // ViewModelを用意する
@@ -220,5 +220,27 @@ public class RegisterBookViewModelAdapterTests
             () => _adapter!.RestoreAsync(viewModel));
         // エラーメッセージを検証する
         Assert.AreEqual("著者名は30文字以内である必要があります。", ex.Message);
+    }
+
+    [TestMethod("RequestViewModelからRegisterBookViewModelへ正しく値がマッピングされる")]
+    public async Task TransAsync_ShouldMapFieldsCorrectly()
+    {
+        // 1. 画面からの入力を模した RequestViewModel を用意
+        var requestDto = new RegisterBookRequestViewModel
+        {
+            Title = "セーラームーン",
+            Author = "武内直子",
+            Stock = 5,
+            CategoryId = "2f4d3e51-6f6b-11f0-954a-00155d1bd29a"
+        };
+
+        // 2. テスト対象のメソッドを実行（_converter は対象のクラスインスタンス）
+        var result = await _adapter!.TransAsync(requestDto);
+
+        // 3. 値が正しく移送されているかを検証
+        Assert.AreEqual(requestDto.Title, result.Title);
+        Assert.AreEqual(requestDto.Author, result.Author);
+        Assert.AreEqual(requestDto.Stock, result.Stock);
+        Assert.AreEqual(requestDto.CategoryId, result.CategoryId);
     }
 }

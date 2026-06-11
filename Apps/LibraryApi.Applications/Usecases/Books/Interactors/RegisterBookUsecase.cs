@@ -40,7 +40,7 @@ public class RegisterBookUsecase : IRegisterBookUsecase
         var result = await _productRepository.ExistsByNameAsync(productName);
         if (result) // 商品が既に存在する
         {
-            throw new ExistsException($"商品名:{productName}は既に存在します。");
+            throw new ExistsException($"図書名:{productName}は既に存在します。");
         }
         return true;
     }
@@ -67,7 +67,7 @@ public class RegisterBookUsecase : IRegisterBookUsecase
         var result = await _productCategoryRepository.SelectByIdAsync(id);
         if (result is null)
         {
-            throw new NotFoundException($"商品カテゴリId:{id}の商品カテゴリは存在しません。");
+            throw new NotFoundException($"図書カテゴリId:{id}の商品カテゴリは存在しません。");
         }
         return result!; 
     }

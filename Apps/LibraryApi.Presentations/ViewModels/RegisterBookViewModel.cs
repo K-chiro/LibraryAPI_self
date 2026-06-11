@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace LibraryApi.Presentations.ViewModels;
 /// <summary>
 /// ユースケース:[新商品を登録する]を実現するViewModel
@@ -24,8 +25,8 @@ public class RegisterBookViewModel
     "^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$",
     ErrorMessage = "商品カテゴリIdはUUID形式で指定してください。")]
     public string CategoryId { get; set; } = string.Empty;
+    
     // 商品カテゴリ名
-    [Required(ErrorMessage = "商品カテゴリ名は必須です。")]
     [StringLength(20, ErrorMessage = "商品名は{1}文字以内で入力してください。")]
-    public string CategoryName { get; set; } = string.Empty;
+    public string? CategoryName { get; set; } = string.Empty;
 }

@@ -7,7 +7,7 @@ using LibraryApi.Applications.Exceptions;
 using LibraryApi.Presentations.Adapters;
 using LibraryApi.Presentations.ViewModels;
 using Swashbuckle.AspNetCore.Annotations;
-namespace LibraryApi.Presentation.Controllers;
+namespace LibraryApi.Presentations.Controllers;
 /// <summary>
 /// ユースケース:[新図書を登録する]を実現するコントローラ
 /// </summary>
@@ -40,7 +40,7 @@ public class RegisterBookController : ControllerBase
     [SwaggerOperation(Summary = "図書カテゴリ一覧を取得",
                           Description = "登録可能なすべての図書カテゴリを返します。")]
     [SwaggerResponse(StatusCodes.Status200OK, "カテゴリ一覧", typeof(List<BookCategory>))]
-    public async Task<IActionResult> GetCategories()
+    public async Task<IActionResult> GetCategoriesAsync()
     {
         var result = await _usecase.GetCategoriesAsync();
         return Ok(result);
@@ -62,7 +62,7 @@ public class RegisterBookController : ControllerBase
     public async Task<IActionResult> Register(
 // SwaggerRequestBodyを追加
 [FromBody, SwaggerRequestBody("新図書登録用ViewModel", Required = true)]
-        RegisterBookViewModel model)
+        RegisterBookRequestViewModel model)
     {
         // サーバーサイドバリデーション
         if (!ModelState.IsValid)
@@ -81,34 +81,38 @@ public class RegisterBookController : ControllerBase
                         .ToArray()
                 );
             return BadRequest(new
-            { code = "VALIDATION_ERROR", message = "入力内容に誤りがあります。", details });
+            { error = "ValidationError", message = "入力内容に誤りがあります。", details });
         }
         try
         {
             // 存在しない図書カテゴリを受信した(ミスしている)
-            await _usecase.GetCategoryByIdAsync(model.CategoryId);
+            var category = await _usecase.GetCategoryByIdAsync(model.CategoryId);
             // 既に登録済みの図書を受信した(ミスしている)
             await _usecase.ExistsByBookNameAsync(model.Title);
             // RegisterBookViewModelからBookを復元する
-            var product = await _adapter.RestoreAsync(model);
+            var fixedModel = await _adapter.TransAsync(model);
+            fixedModel.CategoryName = category.Name;
+            var book = await _adapter.RestoreAsync(fixedModel);
+            
+
             // 図書を永続化する
-            await _usecase.RegisterBookAsync(product);
-            return Created($"/api/products/{product.BookUuid}", product.BookUuid);
+            await _usecase.RegisterBookAsync(book);
+            return Created($"/api/books/{book.BookUuid}", book.BookUuid);
         }
         catch (ExistsException ex)
         {
             // 既に存在する図書を受信した
-            return Conflict(new { code = "PRODUCT_ALREADY_EXISTS", message = ex.Message });
+            return Conflict(new { error = "ProductAlreadyExists", message = ex.Message });
         }
         catch (NotFoundException ex)
         {
             // 存在しない図書カテゴリIdを受信した
-            return NotFound(new { code = "CATEGORY_NOT_FOUND", message = ex.Message });
+            return BadRequest(new { error = "CategoryNotFound", message = ex.Message });
         }
         catch (DomainException ex)
         {
             // 業務ルール違反のデータを受信した
-            return BadRequest(new { code = "DOMAIN_RULE_VIOLATION", message = ex.Message });
+            return BadRequest(new { error = "ValidationError", message = ex.Message });
         }
     }
 
@@ -133,7 +137,7 @@ public class RegisterBookController : ControllerBase
     //     if (string.IsNullOrWhiteSpace(productName))
     //     {
     //         return BadRequest(new
-    //         { code = "INVALID_PRODUCT_NAME", message = "図書名は必須です。" });
+    //         { error = "INVALID_PRODUCT_NAME", message = "図書名は必須です。" });
     //     }
     //     try
     //     {
@@ -145,7 +149,7 @@ public class RegisterBookController : ControllerBase
     //     {
     //         // 図書が既に存在する場合
     //         return Conflict(new
-    //         { code = "PRODUCT_ALREADY_EXISTS", message = ex.Message });
+    //         { error = "PRODUCT_ALREADY_EXISTS", message = ex.Message });
     //     }
     // }
 
@@ -171,7 +175,7 @@ public class RegisterBookController : ControllerBase
     //     {
     //         // エラーレスポンスを返却する
     //         return NotFound(new
-    //         { code = "CATEGORY_NOT_FOUND", message = ex.Message });
+    //         { error = "CATEGORY_NOT_FOUND", message = ex.Message });
     //     }
     // }
 }

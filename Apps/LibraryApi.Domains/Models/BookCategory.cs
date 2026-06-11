@@ -11,7 +11,7 @@ public class BookCategory
   // 業務上の商品カテゴリ識別子
     public string CategoryUuid { get; private set; } = string.Empty;
     // 商品カテゴリ名
-    public string Name { get; private set; } = string.Empty;
+    public string? Name { get; private set; } = string.Empty;
 
     /// <summary>
     /// コンストラクタ
@@ -25,6 +25,8 @@ public class BookCategory
         ValidateName(name);         // カテゴリ名のルール検証
         Name = name;
     }
+    
+    //UUIDだけのコンストラクタ
 
     /// <summary>
     /// 新規作成用コンストラクタ(UUIDを内部生成)
