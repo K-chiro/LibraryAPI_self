@@ -50,7 +50,7 @@ public class UserRepository : IUserRepository
     /// <param name="username">ユーザー名</param>
     /// <param name="email">メールアドレス</param>
     /// <returns>true:存在する false:存在しない</returns>
-    public async Task<bool> ExistsByUsernameAsync(string username, string email)
+    public async Task<bool> ExistsByUsernameAsync(string username)
     {
         try
         {
@@ -61,7 +61,7 @@ public class UserRepository : IUserRepository
         {
             // 例外が発生した場合はInternalExceptionをスローする
             throw new InternalException(
-                $"ユーザー名とメールアドレス存在確認に失敗しました。 username={username} , email={email}", ex);
+                $"ユーザー名とメールアドレス存在確認に失敗しました。 username={username}", ex);
         }
     }
 

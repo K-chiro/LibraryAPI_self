@@ -9,7 +9,7 @@ namespace LibraryApi.Domains.Repositories;
 public interface IUserRepository
 {
     Task CreateAsync(User user);
-    Task<bool> ExistsByUsernameAsync(string username, string email);
+    Task<bool> ExistsByUsernameAsync(string username);
     Task<User?> SelectByUsernameAsync(string username);
     Task<User?> SelectByIdAsync(string id);
 }
