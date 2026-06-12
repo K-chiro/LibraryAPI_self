@@ -70,6 +70,25 @@
             <param name="configureLogging"></param>
             <returns></returns>
         </member>
+        <member name="T:LibraryApi.Presentations.Controllers.DeleteBookController">
+            <summary>
+            ユースケース:[図書を削除する]を実現するコントローラ
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.DeleteBookController.#ctor(LibraryApi.Applications.Usecases.Books.Interfaces.IDeleteUsecase)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="usecase">ユースケース:[図書を削除する]を実現するインターフェイス</param>
+            <param name="adapter">DeleteBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ</param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.DeleteBookController.Deleted(System.String)">
+            <summary>
+            図書を削除する
+            </summary>
+            <param name="bookId">削除対象の図書Id(UUID)</param>
+            <returns></returns>
+        </member>
         <member name="M:LibraryApi.Presentations.Controllers.GetBookInfoByBookIdController.GetInfo(System.String)">
              <summary>
              BookIdで図書情報を取得する

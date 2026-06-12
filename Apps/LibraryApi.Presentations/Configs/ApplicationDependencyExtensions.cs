@@ -101,6 +101,7 @@ public static class ApplicationDependencyExtensions
         services.AddScoped<IUpdateBookUsecase, UpdateBookUsecase>();
         services.AddScoped<ISearchBookByKeywordUsecase, SearchBookByKeywordUsecase>();
         services.AddScoped<IGetBookInfoByBookIdUsecase, GetBookInfoByBookIdUsecase>();
+        services.AddScoped<IDeleteUsecase, DeleteBookUsecase>();
         // ASP.NET Core Identityのパスワードハッシュ化・検証機能
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         // PBKDF2アルゴリズムを利用したパスワードハッシュ化・検証機能

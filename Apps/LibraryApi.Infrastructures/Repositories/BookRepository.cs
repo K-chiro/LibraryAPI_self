@@ -151,7 +151,7 @@ public class BookRepository : IBookRepository
             // 変更データをデータベースに永続化する
             await _context.SaveChangesAsync();
 
-            var result =  await _factory.RestoreAsync(entity);
+            var result = await _factory.RestoreAsync(entity);
             return result;
         }
         catch (Exception ex)
@@ -172,6 +172,11 @@ public class BookRepository : IBookRepository
         {
             // 削除対象の図書を取得する
             var entity = await _context.Books.SingleOrDefaultAsync(p => p.BookUuid == id);
+            var bookStock = await _context.BookStocks.Where(s => s.BookId == entity!.Id).ToListAsync();
+            if (bookStock.Any())
+            {
+                _context.BookStocks.RemoveRange(bookStock);
+            }
             if (entity is null)
             {
                 return false; // 該当図書が存在しない場合はfalseを返す
@@ -215,8 +220,8 @@ public class BookRepository : IBookRepository
         {
             var entity = await _context.Books
             .AsNoTracking()
-            .Include(b=>b.BookCategory)
-            .Include(b=>b.BookStock)
+            .Include(b => b.BookCategory)
+            .Include(b => b.BookStock)
             .SingleOrDefaultAsync(p => p.Title == name);
             if (entity is null)
             {
