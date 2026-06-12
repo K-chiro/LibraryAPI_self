@@ -105,7 +105,7 @@ public class BookTests
             _ = new Book(Guid.NewGuid().ToString(), title, "テスト著者", category, stock);
         });
         // 例外メッセージを検証する
-        Assert.AreEqual("図書名は50文字以内である必要があります。", ex.Message);
+        Assert.AreEqual("図書名は1~50文字で入力してください", ex.Message);
     }
 
 

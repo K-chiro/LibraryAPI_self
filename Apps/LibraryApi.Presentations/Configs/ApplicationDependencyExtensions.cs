@@ -98,7 +98,7 @@ public static class ApplicationDependencyExtensions
         this IServiceCollection services, IConfiguration config)
     {
         services.AddScoped<IRegisterBookUsecase, RegisterBookUsecase>();
-        // services.AddScoped<IUpdateBookUsecase, UpdateBookUsecase>();
+        services.AddScoped<IUpdateBookUsecase, UpdateBookUsecase>();
         services.AddScoped<ISearchBookByKeywordUsecase, SearchBookByKeywordUsecase>();
         services.AddScoped<IGetBookInfoByBookIdUsecase, GetBookInfoByBookIdUsecase>();
         // ASP.NET Core Identityのパスワードハッシュ化・検証機能
@@ -128,7 +128,7 @@ public static class ApplicationDependencyExtensions
 
         // RegisterBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ
         services.AddScoped<RegisterBookViewModelAdapter>();
-        // services.AddScoped<UpdateBookViewModelAdapter>();
+        services.AddScoped<UpdateBookViewModelAdapter>();
         // RegisterUserViewModelからドメインオブジェクト:Userへ変換するアダプタ
         // services.AddScoped<RegisterUserViewModelAdapter>();
 

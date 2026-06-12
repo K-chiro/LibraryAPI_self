@@ -98,12 +98,12 @@ public class Book
     {
         if (string.IsNullOrWhiteSpace(title))
         {
-            throw new DomainException("タイトルは必須です。");
+            throw new DomainException("図書名は必須です。");
         }
 
         if (title.Length > MaxTitleLength)
         {
-            throw new DomainException($"書名は1~{MaxTitleLength}文字で入力してください");
+            throw new DomainException($"図書名は1~{MaxTitleLength}文字で入力してください");
         }
     }
 

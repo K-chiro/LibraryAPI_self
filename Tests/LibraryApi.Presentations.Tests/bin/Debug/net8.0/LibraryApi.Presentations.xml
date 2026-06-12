@@ -10,6 +10,18 @@
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "M:LibraryApi.Presentations.Adapters.RegisterBookViewModelAdapter.RestoreAsync(LibraryApi.Presentations.ViewModels.RegisterBookViewModel)" -->
+        <member name="T:LibraryApi.Presentations.Adapters.UpdateBookViewModelAdapter">
+            <summary>
+            UpdateBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Adapters.UpdateBookViewModelAdapter.RestoreAsync(LibraryApi.Presentations.ViewModels.UpdateBookRequestViewModel)">
+            <summary>
+            UpdateBookViewModelからドメインオブジェクト:Bookを復元する
+            </summary>
+            <param name="target">ユースケース:[商品を変更する]を実現するViewModel</param>
+            <returns></returns>
+        </member>
         <member name="T:LibraryApi.Presentations.Configs.ApplicationDependencyExtensions">
             <summary>
             依存関係(DI)の設定
@@ -106,6 +118,26 @@
             </summary>
             <param name="keyword">検索キーワード</param>
             <returns>検索結果の図書一覧</returns>
+        </member>
+        <member name="T:LibraryApi.Presentations.Controllers.UpdateBookController">
+            <summary>
+            ユースケース:[図書を変更する]を実現するコントローラ
+            </summary>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.UpdateBookController.#ctor(LibraryApi.Applications.Usecases.Books.Interfaces.IUpdateBookUsecase,LibraryApi.Presentations.Adapters.UpdateBookViewModelAdapter)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="usecase">ユースケース:[図書を変更する]を実現するインターフェイス</param>
+            <param name="adapter">UpdateBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ</param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.UpdateBookController.Updated(LibraryApi.Presentations.ViewModels.UpdateBookRequestViewModel,System.String)">
+            <summary>
+            図書を変更する
+            </summary>
+            <param name="model">図書変更用ViewModel</param>
+            <param name="bookId">変更対象の図書Id(UUID)</param>
+            <returns></returns>
         </member>
         <member name="T:LibraryApi.Presentations.ViewModels.RegisterBookRequestViewModel">
             <summary>

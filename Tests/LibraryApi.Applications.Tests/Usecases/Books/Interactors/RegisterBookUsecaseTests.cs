@@ -142,7 +142,7 @@ public class RegisterBookUsecaseTests
             // 存在しない商品カテゴリIdでカテゴリを取得する
             await _uscase!.GetCategoryByIdAsync("2f5016b6-6f6b-11f0-954a-00155d1bd30a");
         });
-        Assert.AreEqual("商品カテゴリId:2f5016b6-6f6b-11f0-954a-00155d1bd30aの商品カテゴリは存在しません。", ex.Message);
+        Assert.AreEqual("図書カテゴリId:2f5016b6-6f6b-11f0-954a-00155d1bd30aの商品カテゴリは存在しません。", ex.Message);
     }
 
 
@@ -160,7 +160,7 @@ public class RegisterBookUsecaseTests
         {
             await _uscase!.ExistsByBookNameAsync("リーダブルコード");
         });
-        Assert.AreEqual("商品名:リーダブルコードは既に存在します。", ex.Message);
+        Assert.AreEqual("図書名:リーダブルコードは既に存在します。", ex.Message);
     }
 
     

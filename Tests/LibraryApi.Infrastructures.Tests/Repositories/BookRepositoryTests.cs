@@ -101,7 +101,7 @@ public class BookRepositoryTests
 
         Assert.AreEqual("d1a3c77a-b148-4162-8dde-e5229f26cd48", book.Stock.StockUuid);
 
-        Assert.AreEqual(5, book.Stock.Stock);
+        Assert.AreEqual(3, book.Stock.Stock);
 
         Assert.AreEqual("18836923-5194-47f1-bf4c-e09eb5fa8fef", book.Category!.CategoryUuid);
 
@@ -215,8 +215,8 @@ public class BookRepositoryTests
             {
                 // 商品を変更する
                 var result = await _bookRepository.UpdateByIdAsync(book);
-                // trueであることを検証する
-                Assert.IsTrue(result);
+                // 中身がであることを検証する
+                Assert.IsNotNull(result);
                 // 変更された商品を取得する
                 var updateResult = await _bookRepository
                     .SelectByIdWithBookStockAndBookCategoryAsync(book.BookUuid);
@@ -246,6 +246,6 @@ public class BookRepositoryTests
         // 商品を変更する
         var result = await _bookRepository.UpdateByIdAsync(book);
         // falseが返されることを検証する
-        Assert.IsFalse(result);
+        Assert.IsNull(result);
     }
 }

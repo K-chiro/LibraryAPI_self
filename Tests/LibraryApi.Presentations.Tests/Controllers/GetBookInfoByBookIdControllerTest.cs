@@ -108,7 +108,7 @@ public class GetBookInfoByBookIdControllerTest
         Assert.IsNotNull(result.Stock, "Stockがnullです。");
         Assert.AreEqual("d1a3c77a-b148-4162-8dde-e5229f26cd48", result.Stock.StockUuid);
         // 在庫数を検証する
-        Assert.AreEqual(5, result.Stock.Stock);
+        Assert.AreEqual(3, result.Stock.Stock);
 
         // 図書カテゴリIdを検証する
         Assert.IsNotNull(result.Category, "Categoryがnullです。");

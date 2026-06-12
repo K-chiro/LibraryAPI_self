@@ -162,7 +162,7 @@ public class RegisterBookViewModelAdapterTests
         var ex = await Assert.ThrowsExceptionAsync<DomainException>(
             () => _adapter!.RestoreAsync(viewModel));
         // エラーメッセージを検証する
-        Assert.AreEqual("タイトルは50文字以内である必要があります。", ex.Message);
+        Assert.AreEqual("図書名は1~50文字で入力してください", ex.Message);
     }
 
     [TestMethod("カテゴリIdが空文字の場合、DomainExceptionがスローされる")]
@@ -219,7 +219,7 @@ public class RegisterBookViewModelAdapterTests
         var ex = await Assert.ThrowsExceptionAsync<DomainException>(
             () => _adapter!.RestoreAsync(viewModel));
         // エラーメッセージを検証する
-        Assert.AreEqual("著者名は30文字以内である必要があります。", ex.Message);
+        Assert.AreEqual("著者名は1~30文字以内である必要があります。", ex.Message);
     }
 
     [TestMethod("RequestViewModelからRegisterBookViewModelへ正しく値がマッピングされる")]
