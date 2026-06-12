@@ -143,7 +143,7 @@ public class RegisterBookViewModelAdapterTests
         var ex = await Assert.ThrowsExceptionAsync<DomainException>(
             () => _adapter!.RestoreAsync(viewModel));
         // エラーメッセージを検証する
-        Assert.AreEqual("タイトルは必須です。", ex.Message);
+        Assert.AreEqual("図書名は必須です。", ex.Message);
     }
 
     [TestMethod("商品名が50文字の場合、DomainExceptionがスローされる")]

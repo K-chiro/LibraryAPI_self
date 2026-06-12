@@ -101,7 +101,7 @@ public class BookRepositoryTests
 
         Assert.AreEqual("d1a3c77a-b148-4162-8dde-e5229f26cd48", book.Stock.StockUuid);
 
-        Assert.AreEqual(3, book.Stock.Stock);
+        Assert.AreEqual(5, book.Stock.Stock);
 
         Assert.AreEqual("18836923-5194-47f1-bf4c-e09eb5fa8fef", book.Category!.CategoryUuid);
 

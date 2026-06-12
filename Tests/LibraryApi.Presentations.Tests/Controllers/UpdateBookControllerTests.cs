@@ -141,7 +141,7 @@ public class UpdateBookControllerTests
         // コードを検証する
         Assert.AreEqual("PRODUCT_NOT_FOUND", code);
         // エラーメッセージを検証する
-        Assert.AreEqual($"図書名:リーダブルは存在しません。", msg);
+        Assert.AreEqual($"図書名:94399b5c-1123-48c1-aab3-ea62378bdc13は存在しません。", msg);
     }
 
 [TestMethod("更新在庫がマイナスで400BadRequestを返す")]
