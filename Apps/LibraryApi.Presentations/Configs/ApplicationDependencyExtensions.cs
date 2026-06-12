@@ -10,7 +10,6 @@ using LibraryApi.Domains.Models;
 using LibraryApi.Applications.Usecases;
 using LibraryApi.Applications.Usecases.Books.Interfaces;
 using LibraryApi.Applications.Usecases.Books.Interactors;
-using LibraryApi.Applications.Usecases.Users.Interfaces;
 // using LibraryApi.Applications.Usecases.Users.Interactors;
 using LibraryApi.Applications.Usecases.Authenticate.Interfaces;
 // using LibraryApi.Applications.Usecases.Authenticate.Interactors;
