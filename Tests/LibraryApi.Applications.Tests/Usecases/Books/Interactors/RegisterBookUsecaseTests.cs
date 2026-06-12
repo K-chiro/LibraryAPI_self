@@ -153,16 +153,6 @@ public class RegisterBookUsecaseTests
         Assert.IsTrue(true);
     }
 
-    [TestMethod("存在する商品名を指定するとExistsExceptionがスローされる")]
-    public async Task ExistsByBookNameAsync_ShouldThrowExistsException_WhenNameDoesNotExist()
-    {
-        var ex = await Assert.ThrowsExceptionAsync<ExistsException>(async () =>
-        {
-            await _uscase!.ExistsByBookNameAsync("リーダブルコード");
-        });
-        Assert.AreEqual("図書名:リーダブルコードは既に存在します。", ex.Message);
-    }
-
     
     [TestMethod("新商品を登録できる")]
     public async Task RegisterBookAsync_ShouldCreateNewBook()

@@ -80,7 +80,6 @@
             コンストラクタ
             </summary>
             <param name="usecase">ユースケース:[図書を削除する]を実現するインターフェイス</param>
-            <param name="adapter">DeleteBookViewModelからドメインオブジェクト:Bookへ変換するアダプタ</param>
         </member>
         <member name="M:LibraryApi.Presentations.Controllers.DeleteBookController.Deleted(System.String)">
             <summary>
