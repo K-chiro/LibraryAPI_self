@@ -8,7 +8,7 @@ public class UpdateBookResponseViewModel
 
     public CategoryInfo? Category { get; set; } = new();
 
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
 
 
     public class CategoryInfo

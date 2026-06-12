@@ -41,7 +41,7 @@ public class UpdateBookViewModelAdapter : IRestorer<Book, UpdateBookRequestViewM
         {
             BookId = book.BookUuid,
             Title = book.Title,
-            Author = book.Author,
+            Author =  book.Author,
             Stock = book.Stock?.Stock, 
 
             Category = new UpdateBookResponseViewModel.CategoryInfo
