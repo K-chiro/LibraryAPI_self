@@ -65,7 +65,7 @@ public class RegisterUserController : ControllerBase
                         .ToArray()
                 );
             return BadRequest(new
-            { code = "VALIDATION_ERROR", message = "入力内容に誤りがあります。", details });
+            { error = "ValidationError", message = "入力内容に誤りがあります。", details });
         }
         try
         {
@@ -75,8 +75,8 @@ public class RegisterUserController : ControllerBase
             var user = await _adapter.RestoreAsync(request);
             //登録
             await _usecase.RegisterUserAsync(user);
-            var response = _adapter.ConvertAsync(user);
-            return Ok(response);
+            var response = await _adapter.ConvertAsync(user);
+            return Created("", response);
         }
         catch (ExistsException ex)
         {

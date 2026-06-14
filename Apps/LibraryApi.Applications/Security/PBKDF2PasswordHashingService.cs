@@ -18,7 +18,7 @@ public class PBKDF2PasswordHashingService : IPasswordHashingService
 
     public string Hash(string rawPassword)
     {
-        var dummy = new User(Guid.NewGuid().ToString(), "tmp", "x");
+        var dummy = new User(Guid.NewGuid().ToString(), "tmp", new string('A', 8));
         return _passwordHasher.HashPassword(dummy, rawPassword);
     }
 

@@ -79,6 +79,10 @@ public class User
     {
         if (string.IsNullOrWhiteSpace(password))
             throw new DomainException("パスワードは必須です。");
+        if (password.Length < 8)
+        {
+            throw new DomainException("パスワードは8文字以上で指定してください。");
+        }
     }
 
     /// <summary>
