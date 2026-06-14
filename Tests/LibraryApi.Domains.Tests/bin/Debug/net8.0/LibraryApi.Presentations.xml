@@ -119,6 +119,20 @@
             <param name="model">図書登録用ViewModel</param>
             <returns></returns>
         </member>
+        <member name="M:LibraryApi.Presentations.Controllers.RegisterUserController.#ctor(LibraryApi.Applications.Usecases.Users.Interfaces.IRegisterUserUsecase,LibraryApi.Presentations.Adapters.RegisterUserViewModelAdapter)">
+            <summary>
+            コンストラクタ
+            </summary>
+            <param name="usecase"></param>
+            <param name="adapter"></param>
+        </member>
+        <member name="M:LibraryApi.Presentations.Controllers.RegisterUserController.Register(LibraryApi.Presentations.ViewModels.RegisterUserRequestViewModel)">
+            <summary>
+            ユーザ登録
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
         <member name="T:LibraryApi.Presentations.Controllers.SearchBookByKeywordController">
             <summary>
             ユースケース:[図書をキーワード検索する]を実現するコントローラ
