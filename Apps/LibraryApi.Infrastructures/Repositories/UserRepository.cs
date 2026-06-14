@@ -45,10 +45,9 @@ public class UserRepository : IUserRepository
     }
 
     /// <summary>
-    /// ユーザー名またはメールアドレスが既に存在するか確認する
+    /// ユーザー名が既に存在するか確認する
     /// </summary>
     /// <param name="username">ユーザー名</param>
-    /// <param name="email">メールアドレス</param>
     /// <returns>true:存在する false:存在しない</returns>
     public async Task<bool> ExistsByUsernameAsync(string username)
     {
@@ -61,19 +60,19 @@ public class UserRepository : IUserRepository
         {
             // 例外が発生した場合はInternalExceptionをスローする
             throw new InternalException(
-                $"ユーザー名とメールアドレス存在確認に失敗しました。 username={username}", ex);
+                $"ユーザー名存在確認に失敗しました。 username={username}", ex);
         }
     }
 
     /// <summary>
     /// ユーザー名またはパスワードからユーザーを取得する
     /// </summary>
-    /// <param name="usernameOrEmail">ユーザー名またはメールアドレス</param>
+    /// <param name="username">ユーザー名またはメールアドレス</param>
     /// <returns>存在する場合:ドメインオブジェクト:User 存在しない場合:null</returns>
-    public async Task<User?> SelectByUsernameAsync(string usernameOrEmail)
+    public async Task<User?> SelectByUsernameAsync(string username)
     {
         var entity = await _context.Users
-        .FirstOrDefaultAsync(u => u.Username == usernameOrEmail);
+        .FirstOrDefaultAsync(u => u.Username == username);
         return entity != null ? await _adapter.RestoreAsync(entity) : null;
     }
 
