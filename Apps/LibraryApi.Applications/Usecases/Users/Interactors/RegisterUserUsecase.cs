@@ -7,17 +7,18 @@ using LibraryApi.Applications.Security;
 using LibraryApi.Domains.Exceptions;
 using LibraryApi.Domains.Repositories;
 using LibraryApi.Domains.Models;
+using LibraryApi.Applications.Usecases.Users.Interfaces;
 
 namespace LibraryApi.Applications.Usecases.Users.Interactors
 {
-    public class RegisterUserUsecase
+    public class RegisterUserUsecase : IRegisterUserUsecase
     {
         /// <summary>
         /// プロパティ
         /// </summary>
-        public IUserRepository _repository { get; set; }
-        public IUnitOfWork _unitOfWork { get; set; }
-        public IPasswordHashingService _service { get; set; }
+        public readonly IUserRepository _repository ;
+        public readonly IUnitOfWork _unitOfWork  ;
+        public readonly IPasswordHashingService _service  ;
 
         /// <summary>
         /// コンストラクタ
@@ -38,7 +39,7 @@ namespace LibraryApi.Applications.Usecases.Users.Interactors
         /// <param name="name"></param>
         /// <returns></returns>
         /// <exception cref="ExistsException"></exception>
-        public async Task ExistsByUserNameAsync(string name)
+        public async Task ExistsByUsernameAsync(string name)
         {
             var result = await _repository.ExistsByUsernameAsync(name);
             if (result)

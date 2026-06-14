@@ -10,10 +10,11 @@ using LibraryApi.Domains.Models;
 using LibraryApi.Applications.Usecases;
 using LibraryApi.Applications.Usecases.Books.Interfaces;
 using LibraryApi.Applications.Usecases.Books.Interactors;
-// using LibraryApi.Applications.Usecases.Users.Interactors;
+using LibraryApi.Applications.Usecases.Users.Interfaces;
+using LibraryApi.Applications.Usecases.Users.Interactors;
 using LibraryApi.Applications.Usecases.Authenticate.Interfaces;
 // using LibraryApi.Applications.Usecases.Authenticate.Interactors;
-// using LibraryApi.Applications.Security;
+using LibraryApi.Applications.Security;
 using LibraryApi.Presentations.Adapters;
 namespace LibraryApi.Presentations.Configs;
 /// <summary>
@@ -79,7 +80,7 @@ public static class ApplicationDependencyExtensions
         // ドメインオブジェクト:UserとUserEntityの相互変換クラス
         services.AddScoped<UserEntityAdapter>();
         // ドメインオブジェクト:User(ユーザー)のCRUD操作インターフェイスの実装
-        // services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
         // JWTの発行・検証インターフェイスの実装
         // services.AddSingleton<IJwtTokenProvider, JwtTokenProvider>();
 
@@ -104,9 +105,9 @@ public static class ApplicationDependencyExtensions
         // ASP.NET Core Identityのパスワードハッシュ化・検証機能
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
         // PBKDF2アルゴリズムを利用したパスワードハッシュ化・検証機能
-        // services.AddScoped<IPasswordHashingService, PBKDF2PasswordHashingService>();
+        services.AddScoped<IPasswordHashingService, PBKDF2PasswordHashingService>();
         // ユースケース:[ユーザーを登録する]を実現するインターフェイス
-        // services.AddScoped<IRegisterUserUsecase, RegisterUserUsecase>();
+        services.AddScoped<IRegisterUserUsecase, RegisterUserUsecase>();
         // JwtSettingsをバインドしてDIに登録する
         // services.Configure<JwtSettings>(config.GetSection("JwtSettings"));
         // ユースケース:[ログインする]を実現するインターフェイス
@@ -130,7 +131,7 @@ public static class ApplicationDependencyExtensions
         services.AddScoped<RegisterBookViewModelAdapter>();
         services.AddScoped<UpdateBookViewModelAdapter>();
         // RegisterUserViewModelからドメインオブジェクト:Userへ変換するアダプタ
-        // services.AddScoped<RegisterUserViewModelAdapter>();
+        services.AddScoped<RegisterUserViewModelAdapter>();
 
         return services;
     }

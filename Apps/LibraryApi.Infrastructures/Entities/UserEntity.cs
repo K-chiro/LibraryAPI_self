@@ -15,8 +15,8 @@ public class UserEntity: ITimestampEntity
     /// オートインクリメントの主キー（内部用）
     /// </summary>
     [Key]
-    [Column("user_id")]
-    public int UserId { get; set; }
+    [Column("id")]
+    public int Id { get; set; }
 
     /// <summary>
     /// UUID（外部公開用）
@@ -38,7 +38,7 @@ public class UserEntity: ITimestampEntity
     /// パスワードのハッシュ
     /// </summary>
     [Required]
-    [Column("password_hash")]
+    [Column("password")]
     [StringLength(255)]
     public string Password { get; set; } = string.Empty;
 
